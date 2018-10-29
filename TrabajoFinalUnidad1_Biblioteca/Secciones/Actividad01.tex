@@ -35,11 +35,23 @@
 
 - Consultas propuestas:
 \\
-1. Query:
+1. Query: select *, ((select count(codigo) from ListaM where tipo='11') * 100) / (SELECT count(codigo) FROM ListaM) as porcen from ListaM
 
-2. Query:
+2. Query: Para calcular el porcentaje de uso del material bibliografico de la bibliotecca necesitamos registrar los trabajos de investigacion de cada curso y de estos registrar el material bibliografico que se indica en el documento, para luego buscar si se encuentran en la biblioteca\\
 
-3. Query:
+select (SELECT  count(matBibliograficoId)  FROM trabajosInvestigacion.matBibliografico
+INNER JOIN Libros ON trabajosInvestigacion.matBibliografico.nombre = Libros.nombre) * 100 / (select count(*) from Libros) as Porcentaje\\
+
+3. Query: Para calcular el porcentaje de uso del material bibliografico de la bibliotecca necesitamos registrar los silabos de cada curso y de estos registrar el material bibliografico que se indica, para luego buscar si se encuentran en la biblioteca\\
+
+Cantidad de material bibliografico que esta en los libros de la biblioteca\\
+SELECT matBibliograficoId, matBibliografico.nombre
+FROM matBibliografico
+INNER JOIN Libros ON matBibliografico.nombre = Libros.nombre\\
+\\
+Porcentaje material bibliografico que esta en los libros de la biblioteca\\
+select (SELECT  count(matBibliograficoId)  FROM matBibliografico
+INNER JOIN Libros ON matBibliografico.nombre = Libros.nombre) * 100 / (select count(*) from Libros) as Porcentaje asdsadsa
 
 
 	\item Bibliograf\'ia
